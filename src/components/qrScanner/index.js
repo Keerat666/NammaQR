@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { useNavigation } from '@react-navigation/native';
 
 export default function QRScanner(props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
@@ -26,7 +28,7 @@ export default function QRScanner(props) {
 
                         if(json.qrRideStatus==="Active")
                         {
-                            props.route.params.navigation.navigate('BookAuto',{driverID: id, navigation : props.route.params.navigation})
+                            navigation.navigate('BookAuto',{driverID: id, navigation : navigation})
 
                         }
                         else if(json.qrRideStatus==="Inactive")

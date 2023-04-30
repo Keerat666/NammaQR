@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react"
 import {View,Text,SafeAreaView,StyleSheet,TextInput, Button,Alert} from "react-native"
 
 const BookAuto =(props)=>{
-  const [pickup, setPickup] = React.useState('');
-  const [drop, setDrop] = React.useState('');
+  const [pickup, setPickup] = React.useState('Boho');
+  const [drop, setDrop] = React.useState('Madiwala Traffic Station');
   const [mobile, setMobile] = React.useState('');
 
   const [driverName, setDriverName] = React.useState('');

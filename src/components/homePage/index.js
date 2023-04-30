@@ -1,41 +1,80 @@
-import React from "react"
-import {View,Text,SafeAreaView,StyleSheet,TextInput, Button,Alert} from "react-native"
+import React from 'react';
+import { View, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
+const HomePage = () => {
 
-const HomePage=({navigation})=>{
+  const navigation = useNavigation();
 
-    return (
-<SafeAreaView>
-        <View>
-        <Text style={styles.header}>Namma Yatri</Text>
-        <Button
-           title="Driver Flow"
-           onPress={() =>
-            navigation.navigate('DriverLogin',{navigation : navigation})
-          }
-         />
-         
-        <Button
-           title="User Flow"
-           onPress={() =>
-            navigation.navigate('QRScanner', {navigation : navigation})
-          }
-            />
-        </View>
-        </SafeAreaView>
-        
-    )
-}
+  const handleUserFlowClick = () => {
+    // Handle user flow button click
+    navigation.navigate('userMap', {navigation : navigation})
 
-const styles= StyleSheet.create({
+  };
 
-    header : {
-      backgroundColor:'black',
-      fontSize: 20,
-      color : "white",
-      textAlign : "center"
-  
-    }
-})
+  const handleDriverFlowClick = () => {
+    // Handle driver flow button click
+    navigation.navigate('DriverLogin',{navigation : navigation})
 
-export default HomePage
+  };
+
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require('../../public/assests/images/nammaQR.png')} // Replace with the actual path to your image
+        style={styles.logo}
+      />
+      <Text style={styles.subtitle}>NAMMA QR</Text>
+      <View style={styles.buttonContainer}>
+
+        <TouchableOpacity style={styles.continueButton}>
+              <Text style={styles.continueButtonText} onPress={handleUserFlowClick}>User Flow</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.continueButton}>
+              <Text style={styles.continueButtonText} onPress={handleDriverFlowClick}>Driver Flow</Text>
+            </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    width: 200,
+    height: 200,
+  },
+  subtitle: {
+    fontSize: 16,
+    marginTop: 10,
+  },
+  buttonContainer: {
+    marginTop: 20,
+  },
+
+  continueButton : {
+    backgroundColor: '#2c2e3b',
+    backgroundColor: '#2c2e3b',
+    height: 55,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    color: "#2c2e3b",
+    marginLeft: 20,
+    marginRight: 20, // add padding
+    width : 200
+
+} ,
+continueButtonText: {
+    color: '#f4bb2d',
+    fontSize: 16,
+  },
+});
+
+export default HomePage;
